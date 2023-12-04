@@ -2,13 +2,38 @@
 
 <h1>Customers</h1>
 
-<div id="customers">
+
+<table style="text-align:center; border: 1px solid black; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid black;">Customer Full Name</th>
+      <th style="border: 1px solid black;">Number of Orders</th>
+      <th style="border: 1px solid black;" colspan="3">Actions</th>
+    </tr>
+  </thead>
+<tbody>
   <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
+  <tr style="border: 1px solid black;">
+    <td  style="border: 1px solid black;">
+      <%=customer.full_name%>
+    </td>
+    <td  style="border: 1px solid black;">
+      <%=customer.orders.count%>
+    </td>
+    <td>
+      <%= link_to "Show", customer %>
+    </td>
+    <td>
+      <%= link_to "Edit", edit_customer_path(customer) %>
+    </td>
+    <td>
+      <%= button_to "Delete", customer, method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
+    </td>
+  </tr>
   <% end %>
-</div>
+  <tbody>
+</table>
+
+<br>
 
 <%= link_to "New customer", new_customer_path %>
