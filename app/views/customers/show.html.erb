@@ -1,15 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<div class="customer">
 
 <%= render @customer %>
 
-<div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer), class: "btn btn-primary" %> |
-  <%= icon('fa-regular', 'pen-to-square') %>
-  <%= link_to "Back to customers"  , customers_path, class: "btn btn-primary" %>
-  <%= icon('fa-regular', 'user')%>
+  <%= link_to "Edit", edit_customer_path(@customer), class: "btn btn-primary" %>
+  <%= link_to "Back", customers_path, class: "btn btn-primary" %>
 
-
-  <%= button_to "Delete this customer", @customer, method: :delete, class: "btn btn-primary" %>
-  <%= icon('fa-regular', 'delete-left') %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= @customer.id %>">
+Delete
+  </button>
 
 </div>
+<%= render "deleteModal", customer: @customer %>
+<h3>Customer Orders:</h3>
+<% if @customer.orders.present?%>
+  <% @customer.orders.each do |order| %>
+
+<%= render order %>
+<div>
+    <%= link_to "Show", order, class: "btn btn-primary" %>
+    <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary"%>
+    <%= link_to "Delete", order, method: :delete, data: {turbo_confirm: "Are you sure?" }, class: "btn btn-primary" %>
+  <% end %>
+  <% else %>
+  No orders yet!
+  <br>
+  <%= link_to "Create a new order", new_order_path, class: "btn btn-primary"  %>
+  <%end%>
+
+<div>
