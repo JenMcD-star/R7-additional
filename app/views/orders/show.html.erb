@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @order %>
+
+<div>
+    <%= link_to "Edit", edit_order_path(@order) %>
+    <%= link_to "Back", orders_path %>
+    <%= button_to "Delete", @order, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+</div>
