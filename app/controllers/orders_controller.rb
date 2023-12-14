@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     def create
         @order = Order.new(order_params)
         if @order.save
-            flash.notice = "Order created successfully"
+            flash.notice = "Order was created successfully."
             redirect_to orders_path
         else
             render :new, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
     def update
         if @order.update(order_params)
-            flash.notice = "Order updated successfully"
+            flash.notice = "Order was updated successfully."
             redirect_to @order
         else
             render :edit, status: :unprocessable_entity
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
         @order.destroy
 
         respond_to do |format|
-            format.html {redirect_to orders_url, notice: 'Order deleted successfully' }
+            format.html {redirect_to orders_url, notice: 'Order was deleted successfully.' }
             format.json { head :no_content }
         end
     end
