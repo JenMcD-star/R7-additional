@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
     belongs_to :customer
-    validates_associated :customer
-  
+
     validates :product_name, presence: true, 
               format: { without: /\d/, message: "should not contain integers" }, 
               length: {maximum: 30}
