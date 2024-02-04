@@ -13,6 +13,7 @@
   </thead>
 <tbody>
   <% @customers.each do |customer| %>
+    <%= render "deleteModal", customer: customer %>
   <tr style="border: 1px solid black;">
     <td  style="border: 1px solid black;">
       <%=customer.full_name%>
@@ -21,14 +22,16 @@
       <%=customer.orders.count%>
     </td>
     <td>
-      <%= link_to "Show", customer %>
+      <%= link_to "Show", customer, class: "btn btn-primary"%>
     </td>
     <td>
-      <%= link_to "Edit", edit_customer_path(customer) %>
+      <%= link_to "Edit", edit_customer_path(customer),class: "btn btn-primary" %>
     </td>
     <td>
-      <%= button_to "Delete", customer, method: :delete, data: { turbo_confirm: "Are you sure?" }  %>
-    </td>
+  <button type="button" class= "btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id %>"> Delete
+  </button>
+</td>
+
   </tr>
   <% end %>
   <tbody>
@@ -36,4 +39,4 @@
 
 <br>
 
-<%= link_to "New customer", new_customer_path %>
+<%= link_to "New customer", new_customer_path, class: "btn btn-primary" %>

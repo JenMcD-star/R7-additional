@@ -9,12 +9,37 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+<body>
+<div "container-fluid">
 
-  <body>
-  <% if flash[:alert].present? %>
-    <p class="my_alert"><%= flash[:alert] %></p>
-  <% end %>
+<div class="banner-background">
+<h1>Customers and Orders</h1>
+</div>
+<nav class="navbar navbar-expand-sm bg-light">
+<div class="dropdown">
+    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+      Customers    
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/customers">View All Customers</a></li>
+      <li><a class="dropdown-item" href="/customers/new">Add New Customer</a></li>
+    </ul><button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+      Orders    
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="dropdown-item" href="/orders">View All Orders</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="/orders/new">Add New Order</a>
+      </li>
+    </ul>
+</div>
+</nav>
+<div class = "content">
 
-    <%= yield %>
+<%= yield %>
+</div>
   </body>
+  </div>
 </html>

@@ -1,9 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @order %>
+<%= render "deleteModal" %>
 
-<div>
-    <%= link_to "Edit", edit_order_path(@order) %>
-    <%= link_to "Back", orders_path %>
-    <%= button_to "Delete", @order, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<div class="d-flex gap-1">
+    <%= link_to "Edit", edit_order_path(@order), class: "btn btn-primary" %>
+    <%= link_to "Back", orders_path, class: "btn btn-primary" %>
+   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" data-id="<%= @order.id %>" data-customer="<%= @order.customer.full_name %>" data-productname="<%= @order.product_name %>" data-productcount="<%=@order.product_count %>" >Delete
+    </button>
 </div>
